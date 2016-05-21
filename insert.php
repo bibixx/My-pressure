@@ -22,7 +22,7 @@ if( ($auth == true) ){
 
       <div class="body-main">
 
-        <img src="graph_img.php" alt="" />
+        insert
 
       </div>
 

@@ -6,6 +6,51 @@ body {
   padding-top: 50px;
 }
 
-.navbar-inverse {
-  background: #111
+.navbar-default {
+  background: #fff;
+}
+
+table a {
+  color: #000;
+}
+
+.text-primary {
+  color: rgb(149, 215, 216);
+}
+
+.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+  color: rgb(149, 215, 216);
+  font-size: 28px;
+  height: auto;
+  padding: 10px 15px;
+}
+
+img {
+  max-width: 100%;
+}
+
+.navbar-nav {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+th .glyphicon {
+  color: #ccc;
+}
+
+th .glyphicon:hover {
+  color: #aaa;
+}
+
+th .glyphicon.text-primary {
+  color: #333;
+}
+
+.row {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-default {
+  background: #fff;
 }
