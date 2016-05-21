@@ -50,8 +50,8 @@ if( ($auth == true) ){
             <thead>
                 <tr>
                   <th>Data <?=a("date")?></th>
-                  <th>Skurczowe [mmHg]<?=a("sys")?></th>
-                  <th>Rozkurczowe [mmHg]<?=a("dia")?></th>
+                  <th>Skurczowe <span class="hidden-xs">[mmHg]</span><?=a("sys")?></th>
+                  <th>Rozkurczowe <span class="hidden-xs">[mmHg]</span><?=a("dia")?></th>
                 </tr>
             </thead>
             <tbody>
@@ -73,16 +73,54 @@ if( ($auth == true) ){
                 $dbc = mysql_connect('localhost', 'root', 'admin') or die( 'błąd' );
                 $dcs = mysql_select_db('pressure');
 
-                $query = "SELECT * FROM `pressures` ORDER BY".$sort;
+                $offset = isset($_GET["page"]) ? ($_GET["page"]-1 >= 0 ? $_GET["page"]-1 : 0) : 0;
+                $query = "SELECT * FROM `pressures` ORDER BY".$sort." LIMIT 15 OFFSET ".$offset*15;
                 $data = mysql_query($query);
 
                 while ($row = mysql_fetch_array($data)) {
                   $date = strtotime($row["date"]);
                   echo "<tr><td>".strftime ("%d.%m.%Y %R (%A)", $date)."</td><td>".$row["sys"]."</td><td>".$row["dia"]."</td></tr>";
                 }
+
+                $query2 = "SELECT COUNT(*) FROM `pressures`";
+                $data2 = mysql_query($query2);
+                $count = mysql_fetch_array($data2)[0];
+                mysql_close($dbc);
               ?>
             </tbody>
         </table>
+
+        <ul class="pagination">
+          <?php
+
+            $url = "?";
+            foreach ($_GET as $key => $value) {
+              if( $key != 'page' ){
+                $url .= $key."=".$value."&";
+              }
+            }
+
+            $url1 = $url.'page='.$offset;
+            $url2 = $url.'page='.($offset+2);
+
+            if( $offset > 0 ){
+              echo '<li><a href="'.$url1.'" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
+            }
+
+            for($x=1; $x<=ceil($count/15); $x++){
+              $urlX = $url."page=".$x;
+              if( $x == ($offset+1) ){
+                echo "<li class=\"active\"><a href=\"$urlX\">$x</a></li>";
+              } else {
+                echo "<li><a href=\"$urlX\">$x</a></li>";
+              }
+            }
+
+            if( $offset < ceil($count/15)-1 ){
+              echo '<li><a href="'.$url2.'" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+            }
+          ?>
+        </ul>
 
       </div>
 

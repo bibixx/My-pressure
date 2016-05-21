@@ -18,11 +18,20 @@ table a {
   color: rgb(149, 215, 216);
 }
 
-.navbar-default .navbar-brand, .navbar-default .navbar-brand:hover {
+.navbar-default .navbar-brand {
   color: rgb(149, 215, 216);
   font-size: 28px;
   height: auto;
   padding: 10px 15px;
+  transition: all .2s ease-in-out;
+}
+
+.navbar-default .navbar-brand:hover {
+  color: rgb(138, 197, 197);
+}
+
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover {
+  color: #000;
 }
 
 img {
@@ -53,4 +62,15 @@ th .glyphicon.text-primary {
 
 .btn-default {
   background: #fff;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+}
+
+@media (min-width: 767px) {
+  .row .btn.col-xs-12 {
+    width: auto;
+  }
 }

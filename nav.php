@@ -40,7 +40,7 @@ echo <<< END
       <ul class="nav navbar-nav">
 END;
 
-echo "<li $a1><a href=\"index.php\">Pokaż dane</a></li>";
+echo "<li $a1><a href=\"show.php\">Pokaż dane</a></li>";
 echo "<li $a2><a href=\"insert.php\">Wprowadź dane</a></li>";
 echo "<li $a3><a href=\"graph.php\">Pokaż wykres</a></li>";
 
