@@ -69,6 +69,29 @@ th .glyphicon.text-primary {
   justify-content: center;
 }
 
+.table .glyphicon-remove-circle, .table .glyphicon-edit {
+  margin: 0px 3px;
+  cursor: pointer;
+  transition: opacity .1s ease-in-out;
+  opacity: 0;
+}
+
+tr:hover .glyphicon-remove-circle, tr:hover .glyphicon-edit {
+  opacity: 1;
+}
+
+.controls {
+  display: inline;
+}
+
+.table .glyphicon-edit:hover{
+  color: #0074D9;
+}
+
+.table .glyphicon-remove-circle:hover{
+  color: #f61717;
+}
+
 .row-fluid {
   display: inline-block;
   width: 100%;

@@ -45,6 +45,12 @@ if( ($auth == true) ){
     <div class="container">
 
       <div class="body-main">
+        <h2>
+          Twoje wyniki
+          <button class="btn btn-default pull-right" style="margin-bottom: 20px" id="btnPrint" type="button" title="Wydrukuj">
+            Wydrukuj&nbsp;&nbsp;<span class="glyphicon glyphicon-print" aria-hidden="true"></span>
+          </button>
+        </h2>
 
         <table class="table table-bordered table-striped table-hover table-responsive">
             <thead>
@@ -79,9 +85,8 @@ if( ($auth == true) ){
 
                 while ($row = mysql_fetch_array($data)) {
                   $date = strtotime($row["date"]);
-                  echo "<tr><td>".strftime ("%d.%m.%Y %R (%A)", $date)."</td><td>".$row["sys"]."</td><td>".$row["dia"]."</td></tr>";
+                  echo "<tr><td>".strftime ("%d.%m.%Y %R (%A)", $date)."</td><td>".$row["sys"]."</td><td>".$row["dia"].'<div id="'.$row["id"].'" class="controls"><span class="pull-right glyphicon glyphicon-remove-circle" aria-hidden="true"></span>'."</td></tr>";
                 }
-
                 $query2 = "SELECT COUNT(*) FROM `pressures`";
                 $data2 = mysql_query($query2);
                 $count = mysql_fetch_array($data2)[0];
@@ -129,6 +134,8 @@ if( ($auth == true) ){
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="jquery.printPage.js" type="text/javascript"></script>
+    <script src="show.js" type="text/javascript"></script>
   </body>
 </html>
 
