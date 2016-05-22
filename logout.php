@@ -4,7 +4,7 @@
   $_SESSION["auth"] = false;
   $_SESSION["last-page"] = null;
   $dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
-  $dcs = mysql_select_db('pressure');
+  $dcs = mysql_select_db(DATABASE);
 
   $query = "SELECT `rememberMe` FROM `users` WHERE `login` = 'admin'";
   $data = mysql_query($query);

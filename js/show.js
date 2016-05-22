@@ -11,7 +11,7 @@ $(document).ready(function() {
     $.ajax({
       type: "POST",
       url: "remove.php",
-      data: "action=remove, id="+id
+      data: "id="+id
     })
     .success(function(data, status) {
       $t.parents("tr").remove();

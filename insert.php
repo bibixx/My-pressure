@@ -12,7 +12,7 @@ if( ($auth == true) ){
   if( isset($_POST["date"]) && isset($_POST["sys"]) && isset($_POST["dia"]) ){
     if( !empty($_POST["date"]) && !empty($_POST["sys"]) && !empty($_POST["dia"]) ){
       $dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
-      $dcs = mysql_select_db('pressure');
+      $dcs = mysql_select_db(DATABASE);
 
       $d = $_POST["date"];
       $dateInfo = date_parse_from_format('Y-m-d\TH:i', $d);
@@ -30,10 +30,10 @@ if( ($auth == true) ){
 <!DOCTYPE html>
 <html>
   <head>
-    <?= file_get_contents("head.html"); ?>
+    <?= file_get_contents("includes/head.html"); ?>
   </head>
   <body>
-    <?php include 'nav.php'; ?>
+    <?php include 'includes/nav.php'; ?>
 
     <div class="containter">
       <div class="body-main row">

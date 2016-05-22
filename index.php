@@ -7,7 +7,7 @@ $login = "admin";
 $pass  = "$2y$10$9ywy5dz93B0HtkBiuHHqqODjPqD6RS2j6z6pn.CQ0JLfuuD5Jer36";
 
 $dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
-$dcs = mysql_select_db('pressure');
+$dcs = mysql_select_db(DATABASE);
 
 $query = "SELECT `rememberMe` FROM `users` WHERE `login` = 'admin'";
 $data = mysql_query($query);
@@ -33,10 +33,11 @@ if ( !isset($_POST['login']) && !isset($_POST['password']) && $auth == FALSE ) {
 <!DOCTYPE html>
 <html>
   <head>
-    <?= file_get_contents("head.html"); ?>
+    <?= file_get_contents("includes/head.html"); ?>
   </head>
   <body>
-    <?php include 'nav.php'; ?>
+    <?php include 'includes/nav.php'; ?>
+
     <div class="containter">
       <div class="body-main row">
         <form name="login-form" action="." method="post" class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
@@ -75,9 +76,7 @@ if ( !isset($_POST['login']) && !isset($_POST['password']) && $auth == FALSE ) {
 
           array_push($rememberMe, $hash);
           $dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
-          $dcs = mysql_select_db('pressure');
-
-          print_r( $rememberMe );
+          $dcs = mysql_select_db(DATABASE);
 
           $query = "UPDATE `users` SET `rememberMe` = '".json_encode($rememberMe)."' WHERE `users`.`id` = 1;";
           $data = mysql_query($query);

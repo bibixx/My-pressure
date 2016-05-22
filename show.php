@@ -37,11 +37,11 @@ if( ($auth == true) ){
 <!DOCTYPE html>
 <html>
   <head>
-    <?= file_get_contents("head.html"); ?>
+    <?= file_get_contents("includes/head.html"); ?>
   </head>
   <body>
 
-    <?php include 'nav.php'; ?>
+    <?php include 'includes/nav.php'; ?>
 
     <div class="container">
 
@@ -78,7 +78,7 @@ if( ($auth == true) ){
                 $arrLocales = array('pl_PL', 'pl','Polish_Poland.28592');
                 setlocale( LC_ALL, $arrLocales );
                 $dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
-                $dcs = mysql_select_db('pressure');
+                $dcs = mysql_select_db(DATABASE);
 
                 $offset = isset($_GET["page"]) ? ($_GET["page"]-1 >= 0 ? $_GET["page"]-1 : 0) : 0;
                 $query = "SELECT * FROM `pressures` ORDER BY".$sort." LIMIT 15 OFFSET ".$offset*15;
@@ -115,21 +115,25 @@ if( ($auth == true) ){
             $url1 = $url.'page='.$offset;
             $url2 = $url.'page='.($offset+2);
 
-            if( $offset > 0 ){
-              echo '<li><a href="'.$url1.'" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
-            }
+            if( ceil($count/15)-1 > 0 ){
 
-            for($x=1; $x<=ceil($count/15); $x++){
-              $urlX = $url."page=".$x;
-              if( $x == ($offset+1) ){
-                echo "<li class=\"active\"><a href=\"$urlX\">$x</a></li>";
-              } else {
-                echo "<li><a href=\"$urlX\">$x</a></li>";
+              if( $offset > 0 ){
+                echo '<li><a href="'.$url1.'" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>';
               }
-            }
 
-            if( $offset < ceil($count/15)-1 ){
-              echo '<li><a href="'.$url2.'" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+              for($x=1; $x<=ceil($count/15); $x++){
+                $urlX = $url."page=".$x;
+                if( $x == ($offset+1) ){
+                  echo "<li class=\"active\"><a href=\"$urlX\">$x</a></li>";
+                } else {
+                  echo "<li><a href=\"$urlX\">$x</a></li>";
+                }
+              }
+
+              if( $offset < ceil($count/15)-1 ){
+                echo '<li><a href="'.$url2.'" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
+              }
+              
             }
           ?>
         </ul>
@@ -141,8 +145,8 @@ if( ($auth == true) ){
 
     <script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script src="jquery.printPage.js" type="text/javascript"></script>
-    <script src="show.js" type="text/javascript"></script>
+    <script src="js/jquery.printPage.js" type="text/javascript"></script>
+    <script src="js/show.js" type="text/javascript"></script>
   </body>
 </html>
 

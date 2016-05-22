@@ -14,10 +14,10 @@ if( ($auth == true) ){
 <!DOCTYPE html>
 <html>
   <head>
-    <?= file_get_contents("head.html"); ?>
+    <?= file_get_contents("includes/head.html"); ?>
   </head>
   <body>
-    <?php include 'nav.php'; ?>
+    <?php include 'includes/nav.php'; ?>
 
     <div class="container-fluid">
 
@@ -55,7 +55,7 @@ if( ($auth == true) ){
   $arrLocales = array('pl_PL', 'pl','Polish_Poland.28592');
   setlocale( LC_ALL, $arrLocales );
   $dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
-  $dcs = mysql_select_db('pressure');
+  $dcs = mysql_select_db(DATABASE);
 
   $query = "SELECT * FROM `pressures` ORDER BY".$sort;
   $data = mysql_query($query);
@@ -110,7 +110,7 @@ if( ($auth == true) ){
   mysql_close($dbc);
 ?>
     </script>
-    <script src="chart.js"></script>
+    <script src="js/chart.js"></script>
   </body>
 </html>
 

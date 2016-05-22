@@ -40,7 +40,7 @@
           $arrLocales = array('pl_PL', 'pl','Polish_Poland.28592');
           setlocale( LC_ALL, $arrLocales );
           $dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
-          $dcs = mysql_select_db('pressure');
+          $dcs = mysql_select_db(DATABASE);
 
           $query = "SELECT * FROM `pressures` ORDER BY".$sort;
           $data = mysql_query($query);
