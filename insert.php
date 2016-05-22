@@ -1,4 +1,5 @@
 <?php
+include 'passwords.php';
 $filename = pathinfo(__FILE__, PATHINFO_FILENAME);
 
 session_start();
@@ -10,7 +11,7 @@ if( array_key_exists("auth", $_SESSION) ){
 if( ($auth == true) ){
   if( isset($_POST["date"]) && isset($_POST["sys"]) && isset($_POST["dia"]) ){
     if( !empty($_POST["date"]) && !empty($_POST["sys"]) && !empty($_POST["dia"]) ){
-      $dbc = mysql_connect('localhost', 'root', 'admin') or die( 'błąd' );
+      $dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
       $dcs = mysql_select_db('pressure');
 
       $d = $_POST["date"];

@@ -1,4 +1,5 @@
 <?php
+include 'passwords.php';
 $filename = pathinfo(__FILE__, PATHINFO_FILENAME);
 
 session_start();
@@ -53,11 +54,12 @@ if( ($auth == true) ){
   $sort =  "`date` ASC";
   $arrLocales = array('pl_PL', 'pl','Polish_Poland.28592');
   setlocale( LC_ALL, $arrLocales );
-  $dbc = mysql_connect('localhost', 'root', 'admin') or die( 'błąd' );
+  $dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
   $dcs = mysql_select_db('pressure');
 
   $query = "SELECT * FROM `pressures` ORDER BY".$sort;
   $data = mysql_query($query);
+
 
   while ($row = mysql_fetch_array($data)) {
     $dtime = DateTime::createFromFormat("Y-m-d H:i:s", $row["date"]);

@@ -1,11 +1,12 @@
 <?php
+include 'passwords.php';
 $filename = pathinfo(__FILE__, PATHINFO_FILENAME);
 
 session_start();
 $login = "admin";
 $pass  = "$2y$10$9ywy5dz93B0HtkBiuHHqqODjPqD6RS2j6z6pn.CQ0JLfuuD5Jer36";
 
-$dbc = mysql_connect('localhost', 'root', 'admin') or die( 'błąd' );
+$dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
 $dcs = mysql_select_db('pressure');
 
 $query = "SELECT `rememberMe` FROM `users` WHERE `login` = 'admin'";
@@ -73,7 +74,7 @@ if ( !isset($_POST['login']) && !isset($_POST['password']) && $auth == FALSE ) {
           $hash = password_hash($_POST['login'].$_SERVER['REMOTE_ADDR'], PASSWORD_DEFAULT);
 
           array_push($rememberMe, $hash);
-          $dbc = mysql_connect('localhost', 'root', 'admin') or die( 'błąd' );
+          $dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
           $dcs = mysql_select_db('pressure');
 
           print_r( $rememberMe );

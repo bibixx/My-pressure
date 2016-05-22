@@ -1,5 +1,6 @@
 <?
-$dbc = mysql_connect('localhost', 'root', 'admin') or die( 'błąd' );
+include 'passwords.php';
+$dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
 $dcs = mysql_select_db('pressure');
 
 if( $_POST["action"] == "remove" ){

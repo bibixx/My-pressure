@@ -35,10 +35,11 @@
       </thead>
       <tbody>
         <?php
+          include 'passwords.php';
           $sort =  "`date` ASC";
           $arrLocales = array('pl_PL', 'pl','Polish_Poland.28592');
           setlocale( LC_ALL, $arrLocales );
-          $dbc = mysql_connect('localhost', 'root', 'admin') or die( 'błąd' );
+          $dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
           $dcs = mysql_select_db('pressure');
 
           $query = "SELECT * FROM `pressures` ORDER BY".$sort;

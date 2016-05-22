@@ -1,4 +1,5 @@
 <?php
+include 'passwords.php';
 $filename = pathinfo(__FILE__, PATHINFO_FILENAME);
 
 function a($attr){
@@ -76,12 +77,18 @@ if( ($auth == true) ){
 
                 $arrLocales = array('pl_PL', 'pl','Polish_Poland.28592');
                 setlocale( LC_ALL, $arrLocales );
-                $dbc = mysql_connect('localhost', 'root', 'admin') or die( 'błąd' );
+                $dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
                 $dcs = mysql_select_db('pressure');
 
                 $offset = isset($_GET["page"]) ? ($_GET["page"]-1 >= 0 ? $_GET["page"]-1 : 0) : 0;
                 $query = "SELECT * FROM `pressures` ORDER BY".$sort." LIMIT 15 OFFSET ".$offset*15;
                 $data = mysql_query($query);
+
+                if ( empty($data[0]) ){
+                  $empty = true;
+                } else {
+                  $empty = false;
+                }
 
                 while ($row = mysql_fetch_array($data)) {
                   $date = strtotime($row["date"]);
