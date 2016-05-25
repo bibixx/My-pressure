@@ -135,3 +135,8 @@ tr:hover .glyphicon-remove-circle, tr:hover .glyphicon-edit {
     width: auto;
   }
 }
+
+.alert.alert-danger {
+  padding: 10px 15px;
+  background: #f2dede;
+}

@@ -55,6 +55,11 @@ if ( !isset($_POST['login']) && !isset($_POST['password']) && $auth == FALSE ) {
               Zapamiętaj mnie
             </label>
           </div>
+
+          <?php if( isset($_SESSION["login-error"]) && $_SESSION["login-error"] == true ){ ?>
+            <div class="alert alert-danger">Błędny login lub hasło!</div>
+          <?php } ?>
+
           <button type="submit" class="btn btn-default col-xs-12">Zaloguj</button>
         </form>
       </div>
@@ -67,9 +72,11 @@ if ( !isset($_POST['login']) && !isset($_POST['password']) && $auth == FALSE ) {
 
 <?php
 } elseif (isset($_POST['login']) && isset($_POST['password']) && $auth == false) {
+  $_SESSION["login-error"] = false;
   if( !empty($_POST['login']) && !empty($_POST['password']) ){
     if( $_POST['login'] == $login && password_verify($_POST['password'], $pass) ){
       $_SESSION['auth'] = true;
+      $_SESSION["login-error"] = false;
       if( isset($_POST['rememberMe']) ){
         if( !isset($_COOKIE["token"]) ){
           $hash = password_hash($_POST['login'].$_SERVER['REMOTE_ADDR'], PASSWORD_DEFAULT);
@@ -92,6 +99,7 @@ if ( !isset($_POST['login']) && !isset($_POST['password']) && $auth == FALSE ) {
         die();
       }
     } else {
+      $_SESSION["login-error"] = true;
       header("Location: .");
       die();
     }
