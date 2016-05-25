@@ -85,7 +85,18 @@ if( ($auth == true) ){
     } else {
       $diaStats[1] += 1;
     }
+  }
 
+  for($x=0; $x<count($sysStats); $x++){
+    if( $sysStats[$x] == 0 ){
+      $sysStats[$x] = null;
+    }
+  }
+
+  for($x=0; $x<count($diaStats); $x++){
+    if( $diaStats[$x] == 0 ){
+      $diaStats[$x] = null;
+    }
   }
 
   $sys = rtrim($sys, "\n");
