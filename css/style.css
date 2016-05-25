@@ -15,7 +15,17 @@ table a {
 }
 
 .text-primary {
-  color: rgb(149, 215, 216);
+  color: #95D7D8;
+}
+
+.btn-primary {
+  background: #95D7D8;
+  border-color: #5E898A;
+}
+
+.btn-primary:hover, .btn-primary:focus {
+  background: rgb(138, 197, 197);
+  border-color: #5E898A;
 }
 
 .navbar-default .navbar-brand {
@@ -139,4 +149,20 @@ tr:hover .glyphicon-remove-circle, tr:hover .glyphicon-edit {
 .alert.alert-danger {
   padding: 10px 15px;
   background: #f2dede;
+}
+
+
+.signin .form-group input:first-of-type {
+  border-radius: 4px 4px 0px 0px;
+}
+
+.signin .form-group input:last-of-type {
+  border-radius: 0px 0px 4px 4px;
+  border-top: none;
+}
+
+.signin .btn {
+  display: block;
+  width: 100%;
+  font-size: 1.2em;
 }

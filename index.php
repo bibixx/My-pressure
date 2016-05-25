@@ -40,13 +40,12 @@ if ( !isset($_POST['login']) && !isset($_POST['password']) && $auth == FALSE ) {
 
     <div class="containter">
       <div class="body-main row">
-        <form name="login-form" action="." method="post" class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+        <form name="login-form" action="." method="post" class="col-xs-12 col-sm-4 col-md-4 col-lg-4 signin">
+          <h2>Zaloguj się!</h2>
           <div class="form-group">
-            <label for="login">Login</label>
+            <label for="login" class="sr-only">Login</label>
             <input type="text" class="form-control" id="login" name="login" placeholder="Login" required>
-          </div>
-          <div class="form-group">
-            <label for="password">Hasło</label>
+            <label for="password" class="sr-only">Hasło</label>
             <input type="password" class="form-control" id="password" name="password" placeholder="Hasło" required>
           </div>
           <div class="rememberMe checkbox">
@@ -60,7 +59,7 @@ if ( !isset($_POST['login']) && !isset($_POST['password']) && $auth == FALSE ) {
             <div class="alert alert-danger">Błędny login lub hasło!</div>
           <?php } ?>
 
-          <button type="submit" class="btn btn-default col-xs-12">Zaloguj</button>
+          <button type="submit" class="btn btn-primary">Zaloguj</button>
         </form>
       </div>
     </div>
