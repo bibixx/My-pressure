@@ -75,10 +75,10 @@ if( ($auth == true) ){
                   $sort = "`".$_GET["by"]."` ".$dir;
                 }
 
-                $arrLocales = array('pl_PL', 'pl','Polish_Poland.28592');
-                setlocale( LC_ALL, $arrLocales );
+                setlocale(LC_ALL, 'pl_PL.UTF-8');
                 $dbc = mysql_connect(HOST, LOGIN, PASSWORD) or die( 'błąd' );
                 $dcs = mysql_select_db(DATABASE);
+                mysql_query('SET NAMES utf8');
 
                 $offset = isset($_GET["page"]) ? ($_GET["page"]-1 >= 0 ? $_GET["page"]-1 : 0) : 0;
                 $query = "SELECT * FROM `pressures` ORDER BY".$sort." LIMIT 15 OFFSET ".$offset*15;
@@ -133,7 +133,7 @@ if( ($auth == true) ){
               if( $offset < ceil($count/15)-1 ){
                 echo '<li><a href="'.$url2.'" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>';
               }
-              
+
             }
           ?>
         </ul>
