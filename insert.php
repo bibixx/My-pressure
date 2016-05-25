@@ -21,9 +21,10 @@ if( ($auth == true) ){
       $query = "INSERT INTO `pressures`(`date`, `sys`, `dia`) VALUES (\"".date("Y-m-d H:i:00", $ut)."\", \"".$_POST["sys"]."\", \"".$_POST["dia"]."\")";
       $data = mysql_query($query);
       mysql_close($dbc);
-
+      header("Location: show.php");
+    } else {
+      header("Location: insert.php");
     }
-    header("Location: insert.php");
   } else {
 ?>
 
