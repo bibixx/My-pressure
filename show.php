@@ -80,7 +80,7 @@ if( ($auth == true) ){
                 $dcs = mysql_select_db(DATABASE);
                 mysql_query('SET NAMES utf8');
 
-                $offset = isset($_GET["page"]) ? ($_GET["page"]-1 >= 0 ? $_GET["page"]-1 : 0) : 0;
+                $offset = isset($_GET["page"]) ? ($_GET["page"]*1-1 >= 0 ? $_GET["page"]*1-1 : 0) : 0;
                 $query = "SELECT * FROM `pressures` ORDER BY".$sort." LIMIT 15 OFFSET ".$offset*15;
                 $data = mysql_query($query);
 
@@ -92,7 +92,7 @@ if( ($auth == true) ){
 
                 while ($row = mysql_fetch_array($data)) {
                   $date = strtotime($row["date"]);
-                  echo "<tr><td>".strftime ("%d.%m.%Y %R (%A)", $date)."</td><td>".$row["sys"]."</td><td>".$row["dia"].'<div id="'.$row["id"].'" class="controls"><span class="pull-right glyphicon glyphicon-remove-circle" aria-hidden="true"></span>'."</td></tr>";
+                  echo "<tr><td>".strftime ("%d.%m.%Y %R <span class='hidden-xs'>(%A)</span>", $date)."</td><td>".$row["sys"]."</td><td>".$row["dia"].'<div id="'.$row["id"].'" class="controls"><span class="pull-right glyphicon glyphicon-remove-circle" aria-hidden="true"></span>'."</td></tr>";
                 }
                 $query2 = "SELECT COUNT(*) FROM `pressures`";
                 $data2 = mysql_query($query2);
