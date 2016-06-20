@@ -45,7 +45,7 @@ if( ($auth == true) ){
               <span class="input-group-addon" id="sys-addon">
                 <span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span>
               </span>
-              <input type="number" min="0" class="form-control" id="sys" name="sys" placeholder="Ciśnienie skurczowe" aria-describedby="sys-addon" required>
+              <input type="number" pattern="\d*" min="0" class="form-control" id="sys" name="sys" placeholder="Ciśnienie skurczowe" aria-describedby="sys-addon" required>
             </div>
           </div>
           <div class="form-group">
@@ -54,7 +54,7 @@ if( ($auth == true) ){
               <span class="input-group-addon" id="dia-addon">
                 <span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span>
               </span>
-              <input type="number" min="0" class="form-control" id="dia" name="dia" placeholder="Ciśnienie rozkurczowe" aria-describedby="dia-addon" required>
+              <input type="number" pattern="\d*" min="0" class="form-control" id="dia" name="dia" placeholder="Ciśnienie rozkurczowe" aria-describedby="dia-addon" required>
             </div>
           </div>
           <div class="form-group">
